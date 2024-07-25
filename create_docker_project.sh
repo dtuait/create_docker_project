@@ -45,7 +45,7 @@ fi
 if [ -d "$PROJECT_NAME" ]; then
     if [ "$OVERWRITE_EXISTING_PROJECT" = true ]; then
         echo "Overwriting existing project..."
-        rm -rf "$PROJECT_NAME"
+        rm -rf "../$PROJECT_NAME"
     else
         echo "Error: Project directory '$PROJECT_NAME' already exists. Use --overwrite-existing-project to overwrite."
         exit 1
@@ -551,6 +551,13 @@ EOF
 # Function to create or modify dockeruser
 setup_dockeruser() {
     local user_exists=$(id -u dockeruser 2>/dev/null)
+    local group_exists=$(getent group 65000)
+
+    if [ -z "$group_exists" ]; then
+        echo "Creating group 'dockeruser' with GID 65000..."
+        groupadd -g 65000 dockeruser
+    fi
+
     if [ -z "$user_exists" ]; then
         # If user does not exist, create it
         echo "Creating user 'dockeruser' with UID and GID 65000..."
@@ -566,6 +573,7 @@ setup_dockeruser() {
         fi
     fi
 }
+
 
 # Call the setup function
 setup_dockeruser
