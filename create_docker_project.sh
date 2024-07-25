@@ -53,8 +53,8 @@ if [ -d "$PROJECT_NAME" ]; then
 fi
 
 # Create project structure
-mkdir -p "$PROJECT_NAME"
-cd "$PROJECT_NAME"
+mkdir -p "../$PROJECT_NAME"
+cd "../$PROJECT_NAME"
 
 # Initialize git and add submodules
 git init --initial-branch=main
