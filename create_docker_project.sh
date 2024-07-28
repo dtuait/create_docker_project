@@ -113,8 +113,6 @@ RUN apt-get update && apt-get install -y iputils-ping tree bash sudo gosu && rm 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-# Copy .bashrc file
-COPY .bashrc /usr/src/project/.bashrc
 
 # Copy app.py file
 COPY app.py /usr/src/app.py
@@ -374,7 +372,7 @@ DOCKERUSER_UID=65000
 DOCKERUSER_GID=65000
 DOCKERUSER_NAME=dockeruser
 DOCKERUSER_PASSWORD=dockeruser
-DOCKERUSER_HOME=/usr/src/project
+DOCKERUSER_HOME=/home/dockeruser
 DOCKERUSER_SHELL=/bin/bash
 EOF
 
@@ -428,7 +426,7 @@ DOCKERUSER_UID=\${DOCKERUSER_UID:-65000}
 DOCKERUSER_GID=\${DOCKERUSER_GID:-65000}
 DOCKERUSER_NAME=\${DOCKERUSER_NAME:-dockeruser}
 DOCKERUSER_PASSWORD=\${DOCKERUSER_PASSWORD:-dockeruser}
-DOCKERUSER_HOME=\${DOCKERUSER_HOME:-/usr/src/project}
+DOCKERUSER_HOME=\${DOCKERUSER_HOME:-/home/dockeruser}
 DOCKERUSER_SHELL=\${DOCKERUSER_SHELL:-/bin/bash}
 
 # Function to setup or update home directory
