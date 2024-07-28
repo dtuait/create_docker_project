@@ -330,6 +330,10 @@ case \$username in
         git config --global user.email "vicre@dtu.dk"
         git config --global user.name "Victor Reipur"
         ;;
+    vicmrp)
+        git config --global user.email "victor.reipur@gmail.com"
+        git config --global user.name "Victor Reipur"
+        ;;
     *)
         echo "Enter your email:"
         read email
